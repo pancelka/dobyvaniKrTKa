@@ -20,6 +20,7 @@
 
 .mapLink:hover span {
     display: block;
+    z-index: 10;
 }
 
 .container {
