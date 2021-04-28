@@ -10,6 +10,10 @@ $(document).ready(function(){
             if($(element).data("password")) {
                 $(element).click(function(e) {
                     let input = window.prompt($(element).data("prompt"));
+                    if (input === null) {
+                        e.preventDefault();
+                        return;
+                    }
                     input = input.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     password = $(element).data("password").toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     if(input != password) {
