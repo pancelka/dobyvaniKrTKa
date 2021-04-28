@@ -15,11 +15,16 @@ $(document).ready(function(){
                         return;
                     }
                     input = input.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    password = $(element).data("password").toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    if(input != password) {
-                        e.preventDefault();
-                        alert("Heslo '" + input + "' není správně.")
+                    let passwords = $(element).data("password").split(",");
+                    passwords = passwords.map(function(x) {
+                        return x.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    })
+                    for (const p of passwords) {
+                        if (p == input)
+                            return;
                     }
+                    e.preventDefault();
+                    alert("Heslo '" + input + "' není správně.")
                 });
             }
             else {
